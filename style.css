@@ -1,0 +1,21 @@
+body {
+	background-color: rgb(32,32,32);
+}
+
+.name {
+	text-align: center;
+	
+}
+
+.button1 {
+	background-color: white;
+	font-size: 20px;
+	padding: 10px 30px;
+	border-radius: 20px;
+	margin-left: 10vw;
+	font-family: "Josefin Sans";
+}
+
+.button1:hover {
+	background-color: #008CBA;
+}
