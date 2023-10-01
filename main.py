@@ -1,35 +1,52 @@
 from flask import *
+from flask_cors import CORS
 import random, csv
 app = Flask(__name__)
-
+CORS(app)
 @app.route("/")
 def home():
     f = open("index.html", "r")
     return f.read()
 @app.route("/api", methods=["GET", "POST"])
+# def api():
+#     if request.method == 'GET':
+#         # If a GET request is made, check if 'data' parameter exists in the query string.
+#         row = request.form('row')
+#     elif request.method == 'POST':
+#         # If a POST request is made, check if 'data' is in the request form data.
+#         row = request.form['row']
+#     try:
+#         # Replace 'data.csv' with your CSV file's path.
+#         with open('MOCK_DATA.csv', 'r') as csv_file:
+#             csv_reader = csv.DictReader(csv_file)
+#             rows = list(csv_reader)
+
+#         if rows:
+#             # # Choose a random row from the CSV data.
+#             # random_row = random.choice(rows)
+#             return jsonify(int(row))
+#         else:
+#             return jsonify({'error': 'CSV file is empty'}), 500
+
+#     except FileNotFoundError:
+#         return jsonify({'error': 'CSV file not found'}), 404
 def api():
-    if request.method == 'GET':
-        # If a GET request is made, check if 'data' parameter exists in the query string.
-        row = request.form('row')
-    elif request.method == 'POST':
-        # If a POST request is made, check if 'data' is in the request form data.
-        row = request.form['row']
     try:
         # Replace 'data.csv' with your CSV file's path.
         with open('MOCK_DATA.csv', 'r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             rows = list(csv_reader)
 
-        if rows:
-            # # Choose a random row from the CSV data.
-            # random_row = random.choice(rows)
-            return jsonify(int(row))
-        else:
+        if not rows:
             return jsonify({'error': 'CSV file is empty'}), 500
+
+        # Get the last 4 rows from the CSV data.
+        last_4_rows = rows[-4:]
+
+        return jsonify(last_4_rows)
 
     except FileNotFoundError:
         return jsonify({'error': 'CSV file not found'}), 404
-
 @app.route("/add", methods=["GET", "POST"])
 def add():
         # if request.method == 'POST':
