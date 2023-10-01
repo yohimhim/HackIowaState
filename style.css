@@ -81,7 +81,7 @@ body {
 
 .box-1 {
 	border-radius: 15px 50px;
-	height: 360px;
+	height: 330px;
 	width: 350px;
 	background-color: #008CBA;
 	display: block;
@@ -104,7 +104,7 @@ body {
 }
 
 .textbox-2 {
-	margin-bottom: 30px;
+	margin-bottom: 5px;
 	margin-right: 15px;
 	margin-left: 80px;
 	float: right;
@@ -125,4 +125,23 @@ body {
 	float: right;
 	margin-top: -4px;
 	width: 300px;
+}
+
+.branch {
+	margin-top: 30px;
+    display: flex;
+    flex-direction: column; /* Change to column layout */
+    gap: 20px; /* Add gap between boxes */
+}
+
+.square {
+	height: 150px;
+	width: 350px;
+	background-color: gray;
+	border-radius: 15px;
+	
+}
+
+.one {
+	
 }
