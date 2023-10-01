@@ -26,18 +26,24 @@
         </div>
     </header>
 <h1 class = "name">New Activity</h1>
+<!--
 <button class="button1">Add</button>
+-->
 <div class = "container">
 
 <form action="http://127.0.0.1:5000/add" method="post">
 <div class = "box-1">
-<div class = "cont-1">
+<div id = "contain-1" class = "cont-1">
 	<p class = "printbox-1"> Input Activity Name:</p>
 	<input class = "textbox-1" type="text" id="text" name="text">
 </div>
 
+<div class = "cont-2">
+	<p class = "printbox-1"> Input Location:</p>
+		<input class = "textbox-2" type="text" id="location" name="location">
+	</div>
 <div class = "cont-3">
-	<p class = "printbox-1">Input Desired People:</p>
+		<p class = "printbox-1">Input Desired People:</p>
 	<select class="dropdown" name="spots" id="spots">
 		<option value="1">1</option>
 		<option value="2">2</option>
@@ -51,10 +57,6 @@
 	</select>
 </div>
 
-<div class = "cont-3">
-	<p class = "printbox-1"> Input Location:</p>
-	<input class = "textbox-2" type="text" id="location" name="location">
-</div>
 
 <div class = "cont-4">
 	<p class = "printbox-1"> Input Date/Time:</p>
