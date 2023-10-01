@@ -28,52 +28,70 @@
  <h1 class = "name">Activities</h1>
 
 <div class="branch">
-	<div class="square one">
+	<div class="square one result-container-1">
 		<p class="activity_name">Activity Names<p>
 		<p class="location_name">Location<p>
-		<p class="date_time">Date & Time<p>
+		<p class="ip-addr">Date & Time<p>
 		<p class="num_of_people">need x people</p>
 		
 	</div>
 	
-	<div class="square two">
+	<div class="square two result-container-2">
+        <p class="activity_name">Activity Names<p>
+            <p class="location_name">Location<p>
+            <p class="date_time">Date & Time<p>
+            <p class="num_of_people">need x people</p>
 	</div>
 	
-	<div class="square three">
+	<div class="square three result-container-3">
+        <p class="activity_name">Activity Names<p>
+            <p class="location_name">Location<p>
+            <p class="date_time">Date & Time<p>
+            <p class="num_of_people">need x people</p>
 	</div>
-	
+    <div class="square four result-container-4">
+        <p class="activity_name">Activity Names<p>
+            <p class="location_name">Location<p>
+            <p class="date_time">Date & Time<p>
+            <p class="num_of_people">need x people</p>
+	</div>
 	
 </div>
-
 <script>
     // Function to fetch data from the API and update the HTML
     function fetchDataAndUpdateHTML() {
         const apiUrl = 'http://127.0.0.1:5000/api'; // Replace with your API URL
 
-        fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                // Update the HTML elements with JSON data
-                const container = document.querySelector('.square.one');
-                const activityName = container.querySelector('.activity_name');
-                const locationName = container.querySelector('.location_name');
-                const dateTime = container.querySelector('.date_time');
-                const numOfPeople = container.querySelector('.num_of_people');
+        // Loop through each result container
+        for (let i = 1; i <= 4; i++) {
+            const resultContainer = document.querySelector(`.result-container-${i}`);
 
-                // Assuming that the JSON structure matches the HTML structure
-                activityName.textContent = data[0].text; // Change this to match your data structure
-                locationName.textContent = data[0].location; // Change this to match your data structure
-                dateTime.textContent = new Date().toLocaleDateString(); // Change this to match your data structure
-                numOfPeople.textContent = `need ${data[0].spots} people`; // Change this to match your data structure
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
-            });
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Assuming data[i - 1] corresponds to the i-th result container
+                    const item = data[i - 1];
+
+                    // Update the HTML elements with JSON data
+                    const activityName = resultContainer.querySelector('.activity_name');
+                    const locationName = resultContainer.querySelector('.location_name');
+                    const dateTime = resultContainer.querySelector('.date_time');
+                    const numOfPeople = resultContainer.querySelector('.num_of_people');
+
+                    activityName.textContent = item.text; // Change this to match your data structure
+                    locationName.textContent = item.location; // Change this to match your data structure
+                    dateTime.textContent = item.date; // Change this to match your data structure
+                    numOfPeople.textContent = `need ${item.spots} people`; // Change this to match your data structure
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                });
+        }
     }
 
     // Call the function to fetch and update data when the page loads

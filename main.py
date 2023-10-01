@@ -55,9 +55,9 @@ def add():
         spots = request.form.get('spots')
         location = request.form.get('location')
         text = request.form.get('text')
-        ip_addr = request.form.get('ip-addr')
+        date = request.form.get('date')
         # Create a new row with the form data
-        new_row = [username, location, spots, text, ip_addr]
+        new_row = [username, location, spots, text, date]
         print(new_row)
         csv_file_path = 'MOCK_DATA.csv'
         # Open the CSV file in append mode and write the new row
