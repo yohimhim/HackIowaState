@@ -43,3 +43,38 @@
 	
 	
 </div>
+
+<script>
+    // Function to fetch data from the API and update the HTML
+    function fetchDataAndUpdateHTML() {
+        const apiUrl = 'http://127.0.0.1:5000/api'; // Replace with your API URL
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Update the HTML elements with JSON data
+                const container = document.querySelector('.square.one');
+                const activityName = container.querySelector('.activity_name');
+                const locationName = container.querySelector('.location_name');
+                const dateTime = container.querySelector('.date_time');
+                const numOfPeople = container.querySelector('.num_of_people');
+
+                // Assuming that the JSON structure matches the HTML structure
+                activityName.textContent = data[0].text; // Change this to match your data structure
+                locationName.textContent = data[0].location; // Change this to match your data structure
+                dateTime.textContent = new Date().toLocaleDateString(); // Change this to match your data structure
+                numOfPeople.textContent = `need ${data[0].spots} people`; // Change this to match your data structure
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    }
+
+    // Call the function to fetch and update data when the page loads
+    fetchDataAndUpdateHTML();
+</script>
