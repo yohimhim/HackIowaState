@@ -30,9 +30,6 @@ def api():
     except FileNotFoundError:
         return jsonify({'error': 'CSV file not found'}), 404
 
-    # if user_data:
-    #     return jsonify({'user_data': user_data})
-    # else:
-    #     return jsonify({'error': 'Data not provided'}), 400
+
 if __name__ == "__main__":
     app.run(debug=True)
