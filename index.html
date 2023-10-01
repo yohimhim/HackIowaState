@@ -31,7 +31,7 @@
 	<div class="square one result-container-1">
 		<p class="activity_name">Activity Names<p>
 		<p class="location_name">Location<p>
-		<p class="date_time">Date & Time<p>
+		<p class="ip-addr">Date & Time<p>
 		<p class="num_of_people">need x people</p>
 	</div>
 	
@@ -84,7 +84,7 @@
 
                     activityName.textContent = item.text; // Change this to match your data structure
                     locationName.textContent = item.location; // Change this to match your data structure
-                    dateTime.textContent = new Date().toLocaleDateString(); // Change this to match your data structure
+                    dateTime.textContent = item.date; // Change this to match your data structure
                     numOfPeople.textContent = `need ${item.spots} people`; // Change this to match your data structure
                 })
                 .catch(error => {
